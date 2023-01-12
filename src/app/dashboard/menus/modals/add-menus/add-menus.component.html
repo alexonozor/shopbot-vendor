@@ -1,0 +1,54 @@
+<h1 matDialogTitle>Add Menu</h1>
+<mat-dialog-content class="mat-typography">
+  <form name="menuForm" [formGroup]="menuForm" class="product w-100" fxLayout="column" fxFlex>
+    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Menu Name" name="name" formControlName="name" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" floatLabel="always" class="w-100s">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Menu Description" name="description" formControlName="description"
+        rows="5"></textarea>
+    </mat-form-field>
+
+    <mat-accordion class="w-100">
+      <mat-expansion-panel hideToggle class="w-100">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Days Available
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="row wrap"  fxLayoutAlign="space-between start">
+          <mat-checkbox class="example-margin" *ngFor="let item of availableDays" [checked]="item.active"
+            (change)="checked(item, $event)">{{item.day}}</mat-checkbox>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="w-100" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Different availability times
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout.gt-md="row wrap" fxLayout.lt-md="column" fxLayoutAlign.lt-md="stretch center"  fxLayoutAlign="space-between start" class="border-b-2 border-b-gray-300 mb-2" *ngFor="let day of filteredDays">
+          <p class="text-right">{{day.day}}</p>
+          <mat-form-field>
+            <input matInput type="time" [value]="day.from" (change)="changeTime($event, day, 'from')"
+              placeholder="start time">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="time" [value]="day.to" (change)="changeTime($event, day, 'to')"
+              placeholder="end date">
+          </mat-form-field>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </form>
+</mat-dialog-content>
+<div mat-dialog-actions class="pt-24">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button class="mat-accent mr-16" (click)="save()" [disabled]="!menuForm.valid">{{isLoading ? 'Please wait..' : 'Create Menu' }}</button>
+</div>

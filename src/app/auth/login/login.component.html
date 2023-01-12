@@ -1,0 +1,57 @@
+
+
+
+
+<section  style="height: 100vh">
+    <div class="px-6 py-8 mx-auto h-screen lg:py-0" fxLayout="column" fxLayoutAlign="center center" >
+        <a  class="flex items-center mb-3 text-2xl font-semibold text-gray-900 dark:text-white">
+            <img width="250" height="250" src="assets/shopbot.png" alt="logo">
+        </a>
+        <p class="text-center leading-tight mb-3 tracking-tight px-6 md:text-lg ">Login to access your stores and start making sales.</p>
+        <div class="w-full   md:mt-0 sm:max-w-md xl:p-0  ">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <form class="space-y-4 md:space-y-6" [formGroup]="userForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                  
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email" placeholder="Email">
+                        <mat-icon class="material-icons-outlined" matSuffix>account_circle</mat-icon>
+
+                        <mat-hint *ngIf="submitted && f['email'].errors">
+                            <mat-hint class="text-red-500 text-xs" *ngIf="f['email'].errors['required']">
+                                This field is required.
+                            </mat-hint>
+                            <mat-hint class="text-red-500 text-xs" *ngIf="f['email'].errors['email']">
+                                Email must be a valid email address
+                            </mat-hint>
+                        </mat-hint>
+                      </mat-form-field>
+
+                
+                      <mat-form-field appearance="outline" class="w-full">
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="!showPassword ? 'password' : 'text'" formControlName="password" placeholder="Password">
+                        <a mat-icon-button matSuffix (click)="showPassword =  !showPassword">
+                            <mat-icon class="material-icons-outlined">{{showPassword ?  'visibility_off' : 'visibility'}}</mat-icon>
+                        </a>
+                        <mat-hint *ngIf="submitted && f['password'].errors">
+                            <Label class="text-red-500 text-xs" *ngIf="f['password'].errors['required']">
+                                This field is required.
+                            </Label>
+                            <Label class="text-red-500 text-xs" *ngIf="f['password'].errors['minlength']">
+                                Password length must be greater than 6 character.
+                            </Label>
+                        </mat-hint>
+                      </mat-form-field>
+                   
+                      <mat-checkbox class="example-margin" >Keep me logged in</mat-checkbox>
+
+                    
+                    <button  mat-button-raised color="primary" [disabled]="isLoading" class="w-full  text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{{ isLoading ? 'Checking...'
+                        : 'Sign in'}}</button>
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+  </section>

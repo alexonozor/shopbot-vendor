@@ -1,0 +1,39 @@
+<div class="bg-white">
+    <mat-tab-group [selectedIndex]="selectedTab" (selectedTabChange)="tabChanged($event)">
+        <mat-tab>
+          <ng-template matTabLabel>
+            <div fxLayout="column" fxLayoutAlign="space-around center">
+              <mat-icon matBadge="8" matBadgePosition="before" matBadgeColor="accent"
+                class="material-icons-outlined">info</mat-icon>
+              <span>General</span>
+            </div>
+          </ng-template> 
+          <div>
+            <app-general-settings-tab [store]="store"></app-general-settings-tab>
+        </div>
+        </mat-tab>
+    
+        <mat-tab>
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="space-around center">
+                <mat-icon class="material-icons-outlined">place</mat-icon>
+                <span>Location</span>
+              </div>
+            </ng-template>
+            <app-location-tab [store]="store"></app-location-tab>
+          </mat-tab>
+    
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div fxLayout="column" fxLayoutAlign="space-around center">
+              <mat-icon class="material-icons-outlined">notifications_none</mat-icon>
+              <span>Notification</span>
+            </div>
+          </ng-template>
+          <app-notification-tab [store]="store"></app-notification-tab>
+        </mat-tab>
+    
+        
+    
+      </mat-tab-group>
+</div>

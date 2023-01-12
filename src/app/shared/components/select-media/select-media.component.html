@@ -1,0 +1,65 @@
+<div *ngIf="isNew">
+    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!mediaData"
+        class="w-200 h-300 p-5 border-2 cursor-pointer border-gray-300 rounded-lg" (click)="select()">
+        <span >
+            <mat-icon class="mat-18">add_photo_alternate</mat-icon>
+        </span>
+        <span  class="text-center">Add {{valueName}}</span>
+    </div>
+
+
+    <div *ngIf="mediaData && ['jpg', 'png', 'jpeg'].includes(mediaData.format)"
+        class="w-56 h-56 p-5 border-2 cursor-pointer bg-no-repeat bg-contain border-gray-300 rounded-lg"
+        [style.background-image]="'url(' + mediaData.url + ')'" fxLayout="column" 
+        fxLayoutAlign="center center">
+        <a mat-icon-button (click)="remove()" color="warn">
+            <mat-icon class="mat-18">delete</mat-icon>
+        </a>
+    </div>
+
+    <div *ngIf="mediaData && ['pdf', 'xls'].includes(mediaData.format)"
+    class="w-200 h-300 p-5 border-2 cursor-pointer border-gray-300 rounded-lg" fxLayout="column"
+        fxLayoutAlign="center center">
+        <p class="text-5xl">
+            <mat-icon class="mat-18 material-icons-outlined">description</mat-icon>
+        </p>
+        <span class="text-center">{{mediaData.fileName}}</span>
+        <span class="text-center uppercase my-5">{{mediaData.format}}</span>
+        <a mat-icon-button (click)="remove()" color="warn">
+            <mat-icon class="mat-18">delete</mat-icon>
+        </a>
+    </div>
+</div>
+
+<div *ngIf="!isNew">
+    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!mediaData"
+        class="w-200 h-300 p-5 border-2 cursor-pointer border-gray-300 rounded-lg" (click)="select()">
+        <span >
+            <mat-icon class="mat-18">add_photo_alternate</mat-icon>
+        </span>
+        <span  class="text-center">Add {{valueName}}</span>
+    </div>
+
+
+    <div *ngIf="mediaData && ['jpg', 'png', 'jpeg', 'svg'].includes(getUrlExtension(mediaData))"
+        class="w-56 h-56 p-5 border-2 cursor-pointer bg-no-repeat bg-contain border-gray-300 rounded-lg"
+        [style.background-image]="'url(' + mediaData + ')'" fxLayout="column" 
+        fxLayoutAlign="center center">
+        <a mat-icon-button (click)="remove()" color="warn">
+            <mat-icon class="mat-18">delete</mat-icon>
+        </a>
+    </div>
+
+    <div *ngIf="mediaData && ['pdf', 'xls'].includes(getUrlExtension(mediaData))"
+    class="w-200 h-300 min-w-min p-5 border-2 cursor-pointer border-gray-300 rounded-lg" fxLayout="column"
+        fxLayoutAlign="center center" style="width: 250px;">
+        <p class="text-5xl">
+            <mat-icon class="mat-18 material-icons-outlined">description</mat-icon>
+        </p>
+       
+        <span class="text-center uppercase my-5">{{getUrlExtension(mediaData)}}</span>
+        <a mat-icon-button (click)="remove()" color="warn">
+            <mat-icon class="mat-18">delete</mat-icon>
+        </a>
+    </div>
+</div>

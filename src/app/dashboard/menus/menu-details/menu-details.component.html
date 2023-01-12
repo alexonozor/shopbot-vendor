@@ -1,0 +1,53 @@
+<div style="height: 100vh; position: relative;" *ngIf="menu$ | async as menu; else  Loading">
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="header bg-white py-5">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="mt-2">
+      <button mat-icon-button (click)="goBack()">
+        <mat-icon>keyboard_backspace</mat-icon>
+      </button>
+      <div class="details">
+        <h2>{{menu.name}}</h2>
+        <p>inside {{store.name}} Menu</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="menu.foods.length > 0 else noData" fxLayout.gt-md="row wrap" fxLayout.md="row wrap" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start stretch"
+    fxLayoutAlign="start start" fxLayoutGap="10px" class="p-5" style="margin-top: 20px;">
+    <mat-card fxFlex.gt-md="24.5%" fxFlex.md="32" class="mb-5" fxFlex.lt-md="100%"
+      *ngFor="let food of menu.foods; let i = index">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title class="break-words">{{food.name}}</mat-card-title>
+          <mat-card-subtitle>{{food.price | currency: store.currency}}</mat-card-subtitle>
+          <img mat-card-sm-image
+            [src]="(food.photos.length > 0) ? food.photos[0] : 'https://dashboard.heypay.xyz/images/image_placeholder.png'">
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        {{food.description}}
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="edit(food)">EDIT</button>
+        <button mat-button color="warn" (click)="removeFood(food, i)">DELETE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <button mat-fab (click)="addTimeToMenu()" color="primary" *ngIf="menu.foods.length > 0"  align="right"
+    style="position: fixed; bottom: 15px; right: 15px">
+    <mat-icon class="mat-18">add</mat-icon>
+  </button>
+</div>
+
+<ng-template #Loading>
+  <div fxLayoutAlign="center center" fxLayout="column" class="w-full h-screen">
+    <mat-progress-spinner mode="indeterminate" [diameter]="50" color="primary"></mat-progress-spinner>
+  </div>
+</ng-template>
+
+<ng-template #noData>
+  <div fxLayoutAlign="center center" fxLayout="column" class="w-full h-full px-20">
+    <app-no-items icon="restaurant_menu" title="No Item on this menu" buttonTxt="Add Item" class="mb-40" (tapButton)="addTimeToMenu()"
+      description="Add item and manage menu item, you can also add item variant option to an item."></app-no-items>
+  </div>
+</ng-template>

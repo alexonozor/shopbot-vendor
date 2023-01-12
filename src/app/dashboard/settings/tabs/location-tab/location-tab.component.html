@@ -1,0 +1,38 @@
+<div style="padding:5px; position: relative; height: 100vh; background-color: #fff;">
+    <form [formGroup]="generalSettingForm">
+        <div fxLayout="column" fxLayoutAlign="space-between stretch" class="p-3">
+            <div class="mat-elevation-z2 example-container" fxLayout="column" fxLayoutAlign="space-between start"
+                formGroupName="contactInfo">
+                <h3>Location</h3>
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                </agm-map>
+                <button mat-raised-button color="primary" (click)="setCurrentLocation()" style="margin-top: 10px ;">
+                    <mat-icon class="mat-18">location_searching</mat-icon> USE MY LOCATION
+                </button>
+
+                <mat-form-field appearance="outline" style="width: 100%; margin-top: 10px;">
+                    <mat-label>Place name</mat-label>
+                    <input matInput placeholder="Place name" formControlName="placeName">
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="width: 100%; margin-top: 10px;">
+                    <mat-label>Suite/Store Number</mat-label>
+                    <input matInput placeholder="Enter Suite/Store Number" formControlName="placeNumber">
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="width: 100%; margin-top: 10px;">
+                    <mat-label>Enter your Location</mat-label>
+                    <input matInput matGoogleMapsAutocomplete (onAutocompleteSelected)="onAutocompleteSelected($event)"
+                        (onLocationSelected)="onLocationSelected($event)">
+                </mat-form-field>
+
+            </div>
+
+        </div>
+    </form>
+
+    <button mat-fab (click)="save()" [disabled]="isLoading" color="primary"
+        style="position: fixed; bottom: 15px; right: 15px">
+        <mat-icon class="mat-18">add</mat-icon>
+    </button>
+
+</div>

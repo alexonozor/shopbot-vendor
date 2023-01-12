@@ -1,0 +1,131 @@
+<ng-container *ngIf="order.category == 'New'">
+  <mat-card class="p-5 rounded-none bg-primary-400 border-b-2 border-white" fxLayout="row"
+    fxLayoutAlign="space-between center" (click)="openOrder(order._id)">
+     <div fxLayout="column" fxLayoutAlign="start start" >
+
+      <p class="text-white text-xl leading-none font-bold">{{order.user.name}}</p>
+      <p class="text-white leading-tight text-lg">{{ order.total | currency: store.currency }} - #{{order.reference | uppercase}}</p>
+      
+      <div fxLayout="column" fxLayoutAlign="start start">
+        <div class="leading-tight m-0" fxLayout="column" fxLayoutGap="5px">
+          <div fxLayout="row"  fxLayoutAlign="start end">
+            <mat-icon class="mat-18 material-icons-outlined">flight_land</mat-icon>
+            <span class="ml-2"> Arrived {{order.createdAt | dateTimeFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start end">
+            <mat-icon class="mat-18 material-icons-outlined">attach_money</mat-icon>
+            <span class="ml-2">{{order.payment}}</span>
+          </div>
+        </div>
+      </div>
+     </div>
+     
+     <button mat-raised-button  color="primary">VIEW ORDER</button>
+  </mat-card>
+</ng-container>
+
+
+<ng-container *ngIf="order.category == 'Processing'">
+  <mat-card class="p-5 rounded-none  border-b-2 border-white" fxLayout="row" fxLayoutAlign="space-between center"
+    (click)="openOrder(order._id)">
+    <div fxLayout="column" fxLayoutAlign="start start" >
+
+      <p class="text-xl leading-none font-bold">{{order.user.name}}</p>
+      <p class="leading-tight text-lg">{{ order.total | currency: store.currency }} - #{{order.reference | uppercase}}</p>
+      
+      <div fxLayout="column" fxLayoutAlign="start start">
+        <div fxLayout="row"  fxLayoutAlign="start end">
+          <mat-icon class="mat-18 material-icons-outlined">flight_land</mat-icon>
+          <span class="ml-2"> Arrived {{order.createdAt | dateTimeFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
+        </div>
+        <div class="leading-tight m-0" fxLayout="column" fxLayoutGap="5px">
+          <div fxLayout="row"  fxLayoutAlign="start end">
+            <mat-icon class="mat-18 material-icons-outlined">check</mat-icon>
+            <span class="ml-2"> Accepted {{acceptedTime(order.status) | dateTimeFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start end">
+            <mat-icon class="mat-18 material-icons-outlined">attach_money</mat-icon>
+            <span class="ml-2">{{order.payment}}</span>
+          </div>
+        </div>
+      </div>
+     </div>
+    <div>
+      <button mat-raised-button (click)="markAsReady($event, order)" color="primary"
+        *ngIf="order.status[0].name == 'Accepted' && order.status[0].id === 0">Mark as Ready</button>
+      <button mat-button *ngIf="order.status[0].name == 'Ready for Pickup' && order.status[0].id === 2"
+        class="bg-pink-300 text-black">AWAITING PICKUP</button>
+      <button mat-button *ngIf="order.status[0].name == 'Shipped' && order.status[0].id === 4"
+        class="bg-black text-white">Shipped</button>
+    </div>
+  </mat-card>
+</ng-container>
+
+
+<ng-container *ngIf="order.category == 'Complete'">
+  <mat-card class="py-2 px-5 rounded-none  border-b-2 border-white" fxLayout="row" fxLayoutAlign="space-between center"
+    (click)="openOrder(order._id)">
+    <div>
+      <p class=" text-xl leading-none font-bold">{{order.user.name}}</p>
+      <p class=" leading-tight text-lg">{{order.total | currency: store.currency}} - #{{order.reference | uppercase}}
+      </p>
+      <div fxLayout="column" fxLayoutAlign="start start">
+        <div fxLayout="row"  fxLayoutAlign="start end">
+          <mat-icon class="mat-18 material-icons-outlined">flight_land</mat-icon>
+          <span class="ml-2"> Arrived {{order.createdAt | dateTimeFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
+        </div>
+        <div class="leading-tight m-0" fxLayout="column" fxLayoutGap="5px">
+          <div fxLayout="row"  fxLayoutAlign="start end">
+            <mat-icon class="mat-18 material-icons-outlined">check</mat-icon>
+            <span class="ml-2"> Accepted {{acceptedTime(order.status) | dateTimeFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start end">
+            <mat-icon class="mat-18 material-icons-outlined">attach_money</mat-icon>
+            <span class="ml-2">{{order.payment}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button mat-raised-button (click)="markAsReady($event, order)" color="primary"
+        *ngIf="order.status[0].name == 'Accepted' && order.status[0].id === 0">Mark as Ready</button>
+      <button mat-button *ngIf="order.status[0].name == 'Ready for Pickup' && order.status[0].id === 2"
+        class="bg-pink-300 text-black">AWAITING PICKUP</button>
+      <button mat-button *ngIf="order.status[0].name == 'Shipped' && order.status[0].id === 4"
+        class="bg-black text-white">Shipped</button>
+    </div>
+  </mat-card>
+</ng-container>
+
+
+<ng-container *ngIf="order.category == 'Cancel'">
+  <mat-card class="py-2 px-5 rounded-none  border-b-2 border-white" fxLayout="row" fxLayoutAlign="space-between center"
+  (click)="openOrder(order._id)">
+  <div>
+    <p class=" text-xl leading-none font-bold">{{order.user.name}}</p>
+    <p class=" leading-tight text-lg">{{order.total | currency: store.currency}} - #{{order.reference | uppercase}}
+    </p>
+    <div fxLayout="column" fxLayoutAlign="start start">
+      <div fxLayout="row"  fxLayoutAlign="start end">
+        <mat-icon class="mat-18 material-icons-outlined">flight_land</mat-icon>
+        <span class="ml-2"> Arrived {{order.createdAt | dateTimeFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
+      </div>
+      <div class="leading-tight m-0" fxLayout="column" fxLayoutGap="5px">
+        <div fxLayout="row"  fxLayoutAlign="start end">
+          <mat-icon class="mat-18 material-icons-outlined">check</mat-icon>
+          <span class="ml-2"> Canceled {{canceledTime(order.status) | dateTimeFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div>
+    <button mat-raised-button (click)="markAsReady($event, order)" color="primary"
+      *ngIf="order.status[0].name == 'Accepted' && order.status[0].id === 0">Mark as Ready</button>
+    <button mat-button *ngIf="order.status[0].name == 'Ready for Pickup' && order.status[0].id === 2"
+      class="bg-pink-300 text-black">AWAITING PICKUP</button>
+    <button mat-button *ngIf="order.status[0].name == 'Shipped' && order.status[0].id === 4"
+      class="bg-black text-white">Shipped</button>
+  </div>
+</mat-card>
+</ng-container>

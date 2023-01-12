@@ -1,0 +1,21 @@
+<div *ngIf="['jpg', 'png', 'jpeg'].includes(media.format)"
+    class="mat-elevation-z8 relative rounded-lg bg-center bg-no-repeat bg-cover h-52 m-5"
+    [style.background-image]="'url(' + media.url + ')'"  fxLayout="column" (click)="select(media)" fxLayoutAlign="center center">
+    <button mat-icon-button (click)="delete()" color="warn">
+        <mat-icon class="mat-18">delete</mat-icon>
+    </button>
+    <div class="p-3 bg-blue-500 rounded-full absolute right-2 bottom-2" *ngIf="media.isSelected"></div>
+</div>
+
+<div *ngIf="['pdf', 'xls'].includes(media.format)" class="mat-elevation-z8 relative rounded-lg h-52 bg-gray-200 m-5" 
+    fxLayout="column" fxLayoutAlign="center center" (click)="select(media)">
+    <p class="text-5xl">
+        <mat-icon class="mat-18 material-icons-outlined">description</mat-icon>
+    </p>
+    <span class="text-center">{{media.fileName}}</span>
+    <span class="text-center uppercase my-5">{{media.format}}</span>
+    <button mat-icon-button (click)="delete()" color="warn">
+        <mat-icon class="mat-18">delete</mat-icon>
+    </button>
+    <div class="p-3 bg-blue-500 rounded-full absolute right-2 bottom-2" *ngIf="media.isSelected"></div>
+</div>

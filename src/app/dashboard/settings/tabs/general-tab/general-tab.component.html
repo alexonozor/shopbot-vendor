@@ -1,0 +1,81 @@
+<div style="padding:5px; position: relative; height: 100vh; background-color: #fff;">
+    
+    <form [formGroup]="generalSettingForm">
+        <div class="mat-elevation-z2 example-containe p-3">
+            <div fxLayout.gt.md="row" fxLayout.md="column" fxLayoutGap.lt-lg="10px" fxLayout.lt-md="column" fxLayoutAlign="space-around center" style="overflow: hidden;">
+                <div class="logo" [style.background-image]="'url(' + (this.store.logo == '' ? 'https://dashboard.heypay.xyz/images/store_image_placeholder.png' : this.store.logo) + ')'" fxLayout="row" fxLayoutAlign="center center">
+                    <div class="control-logo" >
+                        <input type="file" class="file-input" (change)="onFileLogoSelected($event)"  #logoUpload>
+    
+                            <mat-progress-spinner *ngIf="uploadProgress" mode="indeterminate" color="primary" [strokeWidth]="10"></mat-progress-spinner>
+                        <button mat-icon-button (click)="logoUpload.click()" class="bg-black" *ngIf="!uploadProgress">
+                            <mat-icon class="mat-18 text-white">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" class="bg-black" *ngIf="!uploadProgress">
+                            <mat-icon class="mat-18 text-red-600" >delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="banner rounded-md" [style.background-image]="'url(' + (this.store.bannerImage == '' ? 'https://dashboard.heypay.xyz/images/store_image_placeholder.png' : this.store.bannerImage) + ')'" fxLayout="row" fxLayoutAlign="center center">
+                    <div class="control-banner">
+                        <input type="file" class="file-input" (change)="onFileBannerSelected($event)"  #bannerUpload>
+                        <mat-progress-spinner *ngIf="uploadProgressBanner" mode="indeterminate" color="primary" [strokeWidth]="10"></mat-progress-spinner>
+                        <button mat-icon-button (click)="bannerUpload.click()" class="bg-black" *ngIf="!uploadProgressBanner">
+                            <mat-icon class="mat-18 text-white">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" class="bg-black" *ngIf="!uploadProgressBanner">
+                            <mat-icon class="mat-18 text-red-600">delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout.gt-md="row" fxLayoutAlign.gt-md="start start"  fxLayoutGap.gt-md="10px"  fxLayout.lt-lg="column" fxLayoutAlign.lt-md="space-around center">
+            <div class="mat-elevation-z2 example-container" fxFlex="30%" fxFlexAlign.gt-md="start">
+                <h3>Basic Information</h3>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Store Name</mat-label>
+                    <input matInput formControlName="name" placeholder="Enter Store Name">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Store Description</mat-label>
+                    <textarea matInput formControlName="description" placeholder="Enter Store Description"></textarea>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Store Currency</mat-label>
+                    <mat-select formControlName="currency" >
+                        <mat-option *ngFor="let currency of ['₦', 'RS']" [value]="currency">{{currency}}</mat-option>
+                    </mat-select>
+                    
+                </mat-form-field>
+            </div>
+            <div class="mat-elevation-z2 example-container" fxFlex="30%" fxFlexAlign.gt-md="start" formGroupName="contactInfo">
+                <h3>Contact Information</h3>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Store Email Address</mat-label>
+                    <input matInput placeholder="Enter Store Email" formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Store Phone Number</mat-label>
+                    <input matInput placeholder="Store Phone Number" formControlName="phone">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="country" >
+                        <mat-option *ngFor="let country of ['Nigeria', 'Mauritius', 'Rwanda']" [value]="country">{{country}}</mat-option>
+                    </mat-select>
+                    
+                </mat-form-field>
+
+            </div>
+        </div>
+    </form>
+
+    <button mat-fab (click)="save()" [disabled]="isLoading" color="primary"  
+        style="position: fixed; bottom: 15px; right: 15px">
+        <mat-icon class="mat-18">add</mat-icon>
+    </button>
+</div>

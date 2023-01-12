@@ -1,0 +1,33 @@
+<mat-nav-list  *ngIf="authService.loggedIn();">
+  <div class="profile-card">
+    <div class="header">
+      <h5>Welcome {{authService.decodeToken?.sub}}</h5>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="dashboard"> <mat-icon>home</mat-icon>Home</a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="manage/list"> <mat-icon>local_car_wash</mat-icon>Active Bookings</a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="manage/companies"><mat-icon>contacts</mat-icon>Manage Customers</a>
+
+  <mat-divider></mat-divider>
+
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
+    <mat-icon>library_books</mat-icon>
+    Reports
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
+    <mat-icon>settings_applications</mat-icon>
+    User Admin
+  </a>
+  <mat-divider></mat-divider>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="workshop/checklist"> <mat-icon>playlist_add_check</mat-icon>Check-in Vehicle</a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="workshop/service"> <mat-icon>local_car_wash</mat-icon>Service Queue</a>
+
+  <mat-divider></mat-divider>
+
+</mat-nav-list>

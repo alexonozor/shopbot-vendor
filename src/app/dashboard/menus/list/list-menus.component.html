@@ -1,0 +1,63 @@
+<div style="height: 100vh; position: relative;" *ngIf="(menus$ | async) as menus; else Loading">
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" fxFlex="70">
+          <button mat-icon-button (click)="goBack()">
+            <mat-icon class="mat-18 material-icons-outlined">keyboard_backspace</mat-icon>
+          </button>
+          <h3 class="m-0 p-0 text-green-600">Menu</h3>
+        </div>
+    
+        
+      </div>
+    <ul class="divide-gray-500 w-full" *ngIf="menus.length > 0; else noData">
+        <li class="bg-white p-5 w-full" *ngFor="let menu of menus; let i = index" matRipple [routerLink]="['../', menu._id, 'details']">
+          <div class="flex items-center space-x-4">
+            
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium m-0 text-gray-900 truncate ">
+                {{menu.name}}
+              </p>
+              <p class="text-sm text-gray-500 m-0 truncate ">
+                {{menu.description}}
+              </p>
+            </div>
+            <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                <button mat-icon-button [matMenuTriggerFor]="menu2" (click)="$event.stopPropagation()">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu2="matMenu">
+                    <button mat-menu-item (click)="delete(i, menu._id)"><mat-icon>delete</mat-icon> Delete</button>
+                    <button mat-menu-item [routerLink]="['../', menu._id, 'details']"><mat-icon>visibility</mat-icon>View Menu</button>
+                    <button mat-menu-item (click)="openEdit(menu)"><mat-icon>edit</mat-icon>Edit</button>
+                </mat-menu>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+
+    <button mat-fab (click)="addMenu()" color="primary"  *ngIf="menus.length > 0"
+        style="position: fixed; bottom: 80px; right: 15px">
+        <mat-icon class="mat-18">add</mat-icon>
+    </button>
+
+    
+
+</div>
+
+<ng-template #noData>
+    <div fxLayoutAlign="center center" fxLayout="column" class="w-full h-full px-20">
+      <app-no-items icon="restaurant_menu" title="No Menu" buttonTxt="Add Menu" class="mb-24" (tapButton)="addMenu()"
+        description="Menu will show here when you add one. you can also schedule menu and and items to a menu."></app-no-items>
+    </div>
+  </ng-template>
+
+
+
+<ng-template #Loading>
+    <div fxLayoutAlign="center center" fxLayout="column" class="w-full h-screen">
+      <mat-progress-spinner mode="indeterminate" [diameter]="50" color="primary"></mat-progress-spinner>
+    </div>
+  </ng-template>
+
+

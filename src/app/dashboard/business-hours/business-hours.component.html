@@ -1,0 +1,58 @@
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-between center" fxLayoutAlign.lt-md="start start" class="header">
+        
+
+    <div fxLayout="column" fxLayoutAlign="start start" class="mt-3">
+        <h3><strong>Opening hours for {{store.name}}</strong></h3>
+        <div class="details">
+            <p>Set opening hours and special closures for {{store.name}}</p>
+        </div>
+    </div>
+ 
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+    <button mat-button  [color]="store.paused ? 'primary' : 'warn'" (click)="changeStoreStatus()"> <mat-icon class="mat-18">{{store.paused ? 'play_arrow' : 'pause'}} </mat-icon> {{store.paused ? 'RESUME STORE' : 'PAUSE STORE'}}</button>
+    <button mat-raised-button (click)="save()" [disabled]="isLoading" color="primary">
+        <mat-icon class="mat-18">add</mat-icon> SAVE STORE
+    </button>
+  </div>
+</div>
+<mat-divider></mat-divider>
+
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+<form [formGroup]="businessHoursForm">
+    <div formGroupName="businessHours">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start start" *ngFor="let day of days"  [formGroupName]="day.day" class="days">
+            <div fxLayout.lg-sm="column" fxLayoutAlign.lg-sm="space-around start" fxFlex="20">
+                <section class="example-section" fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="10px" fxLayout.lt-md="row" fxLayoutAlign.lt-md="space-between start" >
+                    <p>Never open on:</p>
+                    <mat-slide-toggle class="example-margin" color="primary" formControlName="neverOpen">
+                    </mat-slide-toggle>
+                    <p><strong>{{ day.day | titlecase }} </strong></p>
+                </section>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-around start"  fxLayout.lt-md="column" fxLayoutAlign.lt-md="start stretch" fxFlex="60">
+                <mat-form-field appearance="outline" ngClass.gt-sm="mt-5" fxFlex.md="40">
+                    <mat-label>Open Time</mat-label>
+                    <input matInput placeholder="Placeholder"    [format]="12" [ngxTimepicker]="openingTime"   formControlName="openingTime">
+                    <ngx-material-timepicker clockTheme="primary" #openingTime></ngx-material-timepicker>
+                    <mat-icon matSuffix>schedule</mat-icon>
+                </mat-form-field>
+              
+            
+              <mat-form-field appearance="outline" ngClass.gt-sm="mt-5" fxFlex.md="40">
+                  <mat-label>Close Time</mat-label>
+                  <input matInput placeholder="Placeholder" [ngxTimepicker]="closingTime" [format]="12" formControlName="closingTime">
+                  <ngx-material-timepicker #closingTime></ngx-material-timepicker>
+                  <mat-icon matSuffix>schedule</mat-icon>
+              </mat-form-field>
+            </div>  
+
+            <section class="example-section"   fxLayout="column" fxLayoutAlign="space-between center" fxFlex="20">
+                <mat-checkbox class="example-margin" formControlName="closed">Closed for the day</mat-checkbox>
+            </section>
+
+        </div>
+    </div>
+
+</form>
+

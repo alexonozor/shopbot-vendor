@@ -1,0 +1,66 @@
+.example-container {
+    padding: 16px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    
+  }
+
+  .example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+  .header {
+    margin-top: 30px;
+    border-bottom: 2px #ccc;
+    width: 100%;
+    
+    h3 {
+        margin-bottom: 0px;
+    }
+    
+  }
+
+
+  .logo {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .banner {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 700px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .example-full-width {
+    width: 100%;
+  }
+
+  mat-slide-toggle {
+    margin: 25px 0;
+    display: block;
+  }
+
+  agm-map {
+    height: 300px;
+    width: 100%;
+  }
+
+  .file-input {
+    display: none;
+  }

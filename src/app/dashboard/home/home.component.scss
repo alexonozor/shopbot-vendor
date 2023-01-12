@@ -1,0 +1,32 @@
+// .example-container {
+//     margin-bottom: 16px;
+//     margin-top: 16px;
+    
+//   }
+
+
+.example-form-field {
+  margin: 0 8px 16px 0;
+}
+
+// canvas { width: 100% !important; }
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}

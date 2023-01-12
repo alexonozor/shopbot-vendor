@@ -1,0 +1,153 @@
+<div class="px-5 py-3 w-full" *ngIf="order else Loading" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" fxFlex="70">
+      <button mat-icon-button (click)="back()">
+        <mat-icon class="mat-18 material-icons-outlined">keyboard_backspace</mat-icon>
+      </button>
+      <h3 class="m-0 p-0 text-green-600">{{order.user.name}} - #{{order.reference | uppercase}}</h3>
+    </div>
+
+    <div class="p-3 bg-green-600 rounded-full text-white" fxLayout="column" fxLayoutAlign="center center"
+      style="width: 70px; height: 70px">
+      <h2 class="m-0 text-center p-0 ">29</h2>
+      <p class="m-0 text-center  p-0">min</p>
+    </div>
+  </div>
+
+
+  <ng-container *ngIf="order.category == 'New'">
+    <div class="bg-white p-5" fxLayout="row" fxLayoutAlign="space-between start">
+      <span class="">
+        <button type="button" (click)="cancelOrder(order)" [disabled]="isCanceling"
+          class="inline-flex items-center rounded-md border border-red-500 bg-white px-4 py-2 text-sm font-medium text-red-500 shadow-sm hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+          <mat-icon class="mat-18" *ngIf="!isCanceling">close</mat-icon>
+          {{isCanceling ? 'CANCELLING....' : 'CANCEL ORDER'}}
+        </button>
+      </span>
+
+      <span>
+        <button type="button" (click)="accept(order)"
+          class="inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          <mat-icon class="mat-18" *ngIf="!isAccepting">check</mat-icon>
+          {{isAccepting ? 'ACCEPTING....' : 'ACCEPT ORDER'}}
+        </button>
+      </span>
+
+
+    </div>
+  </ng-container>
+  <ng-container *ngIf="order.category == 'Complete'">
+    <div class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-gray-800 dark:text-green-400"
+      role="alert">
+      <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+          clip-rule="evenodd"></path>
+      </svg>
+      <span class="sr-only">Info</span>
+      <div>
+        <span class="font-medium">We made it! Order was delivered successfully.</span> 
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="order.category == 'Canceled'">
+    <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-gray-800 dark:text-red-400" role="alert">
+      <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+      <span class="sr-only">Info</span>
+      <div>
+        <span class="font-medium">This order was Canceled.</span> 
+      </div>
+    </div>
+  </ng-container>
+
+
+  <ul class="divide-gray-200 w-full ">
+    <li class="bg-white p-5 w-full">
+      <div class="flex items-center space-x-4">
+        <div class="flex-shrink-0">
+          <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
+            alt="Neil image">
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium m-0 text-gray-900 truncate ">
+            {{order.user.name}}
+          </p>
+          <p class="text-sm text-gray-500 m-0 truncate ">
+            {{order.createdAt | date: 'medium'}}
+          </p>
+        </div>
+        <div class="inline-flex items-center text-base font-semibold text-gray-900">
+          <a mat-icon-button [href]="'tel:'+order.user.phoneNumber"> 
+            <mat-icon class="mat-18">phone</mat-icon>
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="bg-white p-5" fxLayout="column" fxLayoutAlign="start start" *ngIf="order.orderInstruction.length > 0">
+    <h2 class="m-0">Notes</h2>
+    <p class="m-0">{{order.orderInstruction}}</p>
+  </div>
+
+
+  <ul class="divide-gray-200 bg-white w-full ">
+    <li class="p-5 w-full" *ngFor="let item of order.cart.products">
+      <div class="flex items-center space-x-4">
+        <div class="flex-shrink-0">
+          {{item.quantity}} x
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium m-0 text-gray-900 truncate ">
+            {{item.name}}
+          </p>
+          <p class="text-sm text-gray-500 m-0 truncate" *ngFor="let option of item.options">
+            {{option.quantity}} x {{option.name}} = {{option.quantity * option.price | currency: order.store.currency}}
+          </p>
+        </div>
+        <div class="inline-flex items-center text-base font-semibold text-gray-900">
+          {{(item.price + optionsPrice(item.options)) * item.quantity | currency: order.store.currency}}
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="bg-white p-5" fxLayout="row" fxLayoutAlign="space-between start">
+    <h2 class="m-0">Total</h2>
+    <h2 class="m-0">{{ order.total - order.shippingFee - order.serviceFee | currency: order.store.currency}}</h2>
+  </div>
+
+  <div  class="flex p-4 mb-4 text-sm text-yellow-700 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-400 dark:border-yellow-800"
+    role="alert">
+    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">{{order.payment}} : </span> {{order.payment == 'Cash on Delivery' ? 'COURIER WILL PAY IN CASH' : 'Shopbot will pay to your account at the end of the working day.'}}
+    </div>
+  </div>
+
+  <div class="bg-white p-5" fxLayout="column" fxLayoutAlign="start start">
+    <div fxLayout="row"  fxLayoutAlign="start end" *ngFor="let status of order.status; let i=index">
+      <mat-icon class="mat-18 material-icons-outlined" [ngClass]="{ 'text-green-500': i !==0, 'text-yellow-500': i == 0 && status.name !== 'Delivered' }">check</mat-icon>
+      <span class="ml-2"> {{status.name}} {{status.updatedOn | dateTimeFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
+    </div>
+  </div>
+
+  <button mat-raised-button *ngIf="order.category == 'Processing' && order.status[0].id === 0" class="bg-green-600 text-white w-full"
+    (click)="markAsReady(order)"> {{isAccepting ? 'GETTING READY....' : 'MARK AS READY'}}</button>
+
+</div>
+
+<ng-template #Loading>
+  <div fxLayoutAlign="center center" fxLayout="column" class="w-full h-screen">
+    <mat-progress-spinner mode="indeterminate" [diameter]="50" color="primary"></mat-progress-spinner>
+  </div>
+</ng-template>

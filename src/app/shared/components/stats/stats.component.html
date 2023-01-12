@@ -1,0 +1,91 @@
+<section class="p-6 my-6  bg-gray-800  text-gray-100">
+    <div class="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-4">
+      <div class="flex p-4 space-x-4 rounded-lg md:space-x-6 bg-gray-900 text-gray-100">
+        <div class="flex justify-center p-2 align-middle rounded-lg sm:p-4  bg-violet-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-9 w-9  text-gray-800">
+            <polygon points="160 96.039 160 128.039 464 128.039 464 191.384 428.5 304.039 149.932 304.039 109.932 16 16 16 16 48 82.068 48 122.068 336.039 451.968 336.039 496 196.306 496 96.039 160 96.039"></polygon>
+            <path d="M176.984,368.344a64.073,64.073,0,0,0-64,64h0a64,64,0,0,0,128,0h0A64.072,64.072,0,0,0,176.984,368.344Zm0,96a32,32,0,1,1,32-32A32.038,32.038,0,0,1,176.984,464.344Z"></path>
+            <path d="M400.984,368.344a64.073,64.073,0,0,0-64,64h0a64,64,0,0,0,128,0h0A64.072,64.072,0,0,0,400.984,368.344Zm0,96a32,32,0,1,1,32-32A32.038,32.038,0,0,1,400.984,464.344Z"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col justify-center align-middle">
+          <p class="text-3xl font-semibold leading-none">{{stat.totalOrders}}</p>
+          <p class="capitalize">Total Orders</p>
+        </div>
+      </div>
+      <div class="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-gray-900  text-gray-100">
+        <div class="flex justify-center p-2 align-middle rounded-lg sm:p-4 bg-blue-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-9 w-9 text-gray-800">
+            <path d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM403.078,403.078a207.253,207.253,0,1,1,44.589-66.125A207.332,207.332,0,0,1,403.078,403.078Z"></path>
+            <path d="M256,384A104,104,0,0,0,360,280H152A104,104,0,0,0,256,384Z"></path>
+            <polygon points="205.757 228.292 226.243 203.708 168 155.173 109.757 203.708 130.243 228.292 168 196.827 205.757 228.292"></polygon>
+            <polygon points="285.757 203.708 306.243 228.292 344 196.827 381.757 228.292 402.243 203.708 344 155.173 285.757 203.708"></polygon>
+          </svg>
+        </div>
+        <div class="flex flex-col justify-center align-middle">
+          <p class="text-3xl font-semibold leading-none">7500</p>
+          <p class="capitalize">New customers</p>
+        </div>
+      </div>
+      <div class="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-gray-900  text-gray-100">
+        <div class="flex justify-center p-2 align-middle rounded-lg sm:p-4  bg-green-400">
+           <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M11.55 38q-2.2 0-3.775-1.525Q6.2 34.95 6.1 32.8H1.8V13.5q0-1.55 1.1-2.675Q4 9.7 5.55 9.7h28.8L46.2 21.6v11.2h-4.3q-.1 2.15-1.675 3.675T36.45 38q-2.25 0-3.825-1.525Q31.05 34.95 31 32.8H17q-.05 2.2-1.625 3.7T11.55 38Zm18.4-18h9.5l-6.85-6.85h-2.65Zm-12.4 0h9.4v-6.85h-9.4ZM5.2 20h9.35v-6.85H5.2Zm6.35 15.5q1.25 0 2.125-.875t.875-2.125q0-1.25-.85-2.125t-2.1-.875q-1.3 0-2.175.875-.875.875-.875 2.125t.875 2.125q.875.875 2.125.875Zm24.85 0q1.3 0 2.175-.875.875-.875.875-2.125t-.875-2.125Q37.7 29.5 36.45 29.5t-2.125.875q-.875.875-.875 2.125t.85 2.125q.85.875 2.1.875Zm-31.2-6h1.7q.85-1.3 2.125-1.9Q10.3 27 11.55 27t2.525.6q1.275.6 2.125 1.9h15.6q.85-1.3 2.125-1.9Q35.2 27 36.45 27t2.525.6q1.275.6 2.125 1.9h1.7V23H5.2ZM42.8 23H5.2Z"/></svg>
+
+        </div>
+        <div class="flex flex-col justify-center align-middle">
+          <p class="text-3xl font-semibold leading-none">{{stat.completedOrders}}</p>
+          <p class="capitalize">Delivered Orders</p>
+        </div>
+      </div>
+      <div class="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-gray-900  text-gray-100">
+        <div class="flex justify-center p-2 align-middle rounded-lg sm:p-4  bg-red-400">
+        <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M32.15 25.4H30.4l-3.15-3.3h4.3l6.05-10.95H16.15l-3.3-3.3H39q1.55 0 2.2 1.2.65 1.2-.15 2.65L34.2 24.15q-.3.5-.725.85t-1.325.4Zm-17.8 18.7q-1.5 0-2.55-1.075-1.05-1.075-1.05-2.575 0-1.45 1.05-2.5t2.55-1.05q1.5 0 2.55 1.05 1.05 1.05 1.05 2.55 0 1.5-1.05 2.55-1.05 1.05-2.55 1.05Zm28.4 2.5L29.7 33.7h-16q-2 0-2.95-1.45-.95-1.45.05-3.15l3.55-5.85-4.3-9.25L2.1 6l2.25-2.25L45 44.4ZM26.4 30.4l-4.9-5.05h-4.55l-3.1 5.05Zm5.15-8.3h-4.3 4.3Zm2.85 22q-1.45 0-2.525-1.075T30.8 40.45q0-1.45 1.075-2.5T34.4 36.9q1.45 0 2.525 1.05T38 40.5q0 1.5-1.075 2.55Q35.85 44.1 34.4 44.1Z"/></svg>
+        </div>
+        <div class="flex flex-col justify-center align-middle">
+          <p class="text-3xl font-semibold leading-none">{{stat.canceledOrders}}</p>
+          <p class="capitalize">Canceled Orders</p>
+        </div>
+      </div>
+      <div class="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-gray-900  text-gray-100">
+        <div class="flex justify-center p-2 align-middle rounded-lg sm:p-4  bg-yellow-400">
+
+        <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M13.3 26.5q1.05 0 1.775-.725.725-.725.725-1.775 0-1.05-.725-1.775-.725-.725-1.775-.725-1.05 0-1.775.725Q10.8 22.95 10.8 24q0 1.05.725 1.775.725.725 1.775.725Zm10.7 0q1.05 0 1.775-.725.725-.725.725-1.775 0-1.05-.725-1.775Q25.05 21.5 24 21.5q-1.05 0-1.775.725Q21.5 22.95 21.5 24q0 1.05.725 1.775.725.725 1.775.725Zm10.65 0q1.05 0 1.775-.725.725-.725.725-1.775 0-1.05-.725-1.775-.725-.725-1.775-.725-1.05 0-1.775.725-.725.725-.725 1.775 0 1.05.725 1.775.725.725 1.775.725ZM24 44q-4.1 0-7.75-1.575-3.65-1.575-6.375-4.3-2.725-2.725-4.3-6.375Q4 28.1 4 23.95q0-4.1 1.575-7.75 1.575-3.65 4.3-6.35 2.725-2.7 6.375-4.275Q19.9 4 24.05 4q4.1 0 7.75 1.575 3.65 1.575 6.35 4.275 2.7 2.7 4.275 6.35Q44 19.85 44 24q0 4.1-1.575 7.75-1.575 3.65-4.275 6.375t-6.35 4.3Q28.15 44 24 44Zm.05-3q7.05 0 12-4.975T41 23.95q0-7.05-4.95-12T24 7q-7.05 0-12.025 4.95Q7 16.9 7 24q0 7.05 4.975 12.025Q16.95 41 24.05 41ZM24 24Z"/></svg>
+        </div>
+        <div class="flex flex-col justify-center align-middle">
+          <p class="text-3xl font-semibold leading-none">{{stat.pendingOrders}}</p>
+          <p class="capitalize">Pending Orders</p>
+        </div>
+      </div>
+      <div class="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-gray-900  text-gray-100">
+        <div class="flex justify-center p-2 align-middle rounded-lg sm:p-4  bg-green-400">
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M7 34.15V39h34v-4.85ZM7 12h6.25q-.25-.45-.4-1.125-.15-.675-.15-1.225 0-2.35 1.65-4T18.3 4q1.55 0 2.85.775T23.2 6.75l.85 1.3.8-1.3q.8-1.25 2.05-2Q28.15 4 29.6 4q2.4 0 4.05 1.625T35.3 9.65q0 .55-.125 1.1T34.8 12H41q1.2 0 2.1.9.9.9.9 2.1v24q0 1.2-.9 2.1-.9.9-2.1.9H7q-1.2 0-2.1-.9Q4 40.2 4 39V15q0-1.2.9-2.1.9-.9 2.1-.9Zm0 16.8h34V15H28.55l5 6.95-2.4 1.8-7.15-9.9-7.15 9.9-2.4-1.8 5-6.95H7Zm11.35-16.5q1.1 0 1.875-.775Q21 10.75 21 9.65t-.775-1.875Q19.45 7 18.35 7t-1.875.775Q15.7 8.55 15.7 9.65t.775 1.875q.775.775 1.875.775Zm11.25 0q1.15 0 1.925-.775.775-.775.775-1.875t-.775-1.875Q30.75 7 29.6 7q-1.05 0-1.825.775Q27 8.55 27 9.65t.775 1.875q.775.775 1.825.775Z"/></svg>
+        </div>
+        <div class="flex flex-col justify-center align-middle">
+          <p class="text-3xl font-semibold leading-none">{{stat.newOrders}}</p>
+          <p class="capitalize">New Orders</p>
+        </div>
+      </div>
+      <div class="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-gray-900  text-gray-100">
+        <div class="flex justify-center p-2 align-middle rounded-lg sm:p-4  bg-blue-400"> 
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M27 27q-2.5 0-4.25-1.75T21 21q0-2.5 1.75-4.25T27 15q2.5 0 4.25 1.75T33 21q0 2.5-1.75 4.25T27 27Zm-16 7q-1.25 0-2.125-.875T8 31V11q0-1.25.875-2.125T11 8h32q1.25 0 2.125.875T46 11v20q0 1.25-.875 2.125T43 34Zm5-3h22q0-2.1 1.45-3.55Q40.9 26 43 26V16q-2.1 0-3.55-1.45Q38 13.1 38 11H16q0 2.1-1.45 3.55Q13.1 16 11 16v10q2.1 0 3.55 1.45Q16 28.9 16 31Zm24 9H5q-1.25 0-2.125-.875T2 37V14h3v23h35Zm-29-9V11v20Z"/></svg>
+        </div>
+        <div class="flex flex-col justify-center align-middle">
+          <p class="text-3xl font-semibold leading-none">{{stat.totalSales | currency}}</p>
+          <p class="capitalize">Revenue</p>
+        </div>
+      </div>
+
+      <div class="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-gray-900  text-gray-100">
+        <div class="flex justify-center p-2 align-middle rounded-lg sm:p-4  bg-green-400"> 
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M22.55 38.35h2.75v-2.6q3.05-.35 4.75-1.875 1.7-1.525 1.7-4.075 0-2.55-1.45-4.15-1.45-1.6-4.9-3.05-2.9-1.2-4.2-2.15-1.3-.95-1.3-2.55 0-1.55 1.125-2.45 1.125-.9 3.075-.9 1.5 0 2.6.7t1.85 2.1l2.4-1.15q-.85-1.75-2.25-2.75t-3.3-1.2V9.7h-2.75v2.55q-2.55.35-4.025 1.875Q17.15 15.65 17.15 17.9q0 2.45 1.5 3.9 1.5 1.45 4.5 2.7 3.35 1.4 4.6 2.525Q29 28.15 29 29.8q0 1.6-1.325 2.575-1.325.975-3.325.975-1.95 0-3.475-1.1-1.525-1.1-2.125-3l-2.55.85q1.05 2.3 2.575 3.625Q20.3 35.05 22.55 35.65ZM24 44q-4.1 0-7.75-1.575-3.65-1.575-6.375-4.3-2.725-2.725-4.3-6.375Q4 28.1 4 24q0-4.15 1.575-7.8 1.575-3.65 4.3-6.35 2.725-2.7 6.375-4.275Q19.9 4 24 4q4.15 0 7.8 1.575 3.65 1.575 6.35 4.275 2.7 2.7 4.275 6.35Q44 19.85 44 24q0 4.1-1.575 7.75-1.575 3.65-4.275 6.375t-6.35 4.3Q28.15 44 24 44Zm0-3q7.1 0 12.05-4.975Q41 31.05 41 24q0-7.1-4.95-12.05Q31.1 7 24 7q-7.05 0-12.025 4.95Q7 16.9 7 24q0 7.05 4.975 12.025Q16.95 41 24 41Zm0-17Z"/></svg>
+        </div>
+        <div class="flex flex-col justify-center align-middle">
+          <p class="text-3xl font-semibold leading-none">{{stat.profits | currency}}</p>
+          <p class="capitalize">Profit</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+

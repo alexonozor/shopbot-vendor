@@ -1,0 +1,19 @@
+<div style="padding:5px; position: relative; height: 100vh; background-color: #fff">
+    <form [formGroup]="generalSettingForm">
+        <div fxLayout="column" fxLayoutAlign="space-between stretch" class="p-3">
+            <div class="mat-elevation-z2 example-container w-full" fxFlex.gt-md="30%" fxFlex.lt-md="100%" fxFlexAlign.gt-md="start" formGroupName="notifications">
+                <h3>Notifications</h3>
+                <mat-slide-toggle formControlName="sms">SMS</mat-slide-toggle>
+                <mat-slide-toggle formControlName="phone">Phone Calls</mat-slide-toggle>
+                <mat-slide-toggle formControlName="email">Emails</mat-slide-toggle>
+            </div>
+
+        </div>
+    </form>
+
+    <button mat-fab (click)="save()" [disabled]="isLoading" color="primary"  
+        style="position: fixed; bottom: 15px; right: 15px">
+        <mat-icon class="mat-18">add</mat-icon>
+    </button>
+
+</div>

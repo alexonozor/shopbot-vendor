@@ -1,0 +1,37 @@
+.file-input {
+    display: none;
+  }
+
+  .product-image {
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+
+    img {
+        height: 100%;
+        width: auto;
+        max-width: none;
+    }
+}
+
+
+.tab-content {
+  padding: 5px;
+}
+
+
+.mat-dialog-content {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+
+.fullscreen-dialog {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: 100%;
+  height: 100%;
+}
