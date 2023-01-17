@@ -1,6 +1,6 @@
 {
-  "name": "shopbot-restaurant",
-  "short_name": "shopbot-restaurant",
+  "name": "Shopbot Vendor",
+  "short_name": "Shopbot Vendor",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
