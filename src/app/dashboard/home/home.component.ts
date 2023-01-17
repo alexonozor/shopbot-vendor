@@ -47,7 +47,6 @@ export class HomeComponent implements OnInit {
 
    listenToNewOrders() {
     this.orderService.selectedOrders.subscribe((order) => {
-      console.log(order)
       if (order) {
         this.getOrders()
       }

@@ -12,6 +12,8 @@ import { Socket } from 'ngx-socket-io';
 import { NotificationsService } from '../shared/services/notifications.service';
 import { Order } from 'src/app/shared/models/order';
 import { OrdersService } from '../shared/services/order.service';
+import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { StoreService } from 'src/app/shared/services/store.service';
 
 
 @Component({
@@ -44,7 +46,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     public breakpointObserver: BreakpointObserver,
     private socket: Socket,
     private notificationService: NotificationsService,
-    private orderService: OrdersService
+    private orderService: OrdersService,
+    private storeService: StoreService
   ) {
    this.store = this.route.snapshot.data['store'] as Store
   }
@@ -84,6 +87,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   logOut() {
     this.auth.logout();
     this.snackbar.open('Logged Out', 'close', {duration: 2000});
+  }
+
+  changeStoreStatus(event:MatSlideToggleChange) {
+    this.storeService.updateStore(this.store._id, {active: event.checked}).subscribe() 
+
   }
 
 

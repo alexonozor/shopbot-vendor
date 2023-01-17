@@ -45,10 +45,7 @@ export interface Shipping {
         id: number; 
         name: string;
         color: string; 
-        updatedOn: { 
-            type: Date, 
-            default: Date 
-        } | any;
+        updatedOn: any;
   }
 
 

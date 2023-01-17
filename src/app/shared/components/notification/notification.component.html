@@ -8,7 +8,7 @@
           <div class="mb-2 text-sm font-normal">A new order has arrived. Kindly process it as the rider is on his way</div> 
           <div class="grid grid-cols-2 gap-2">
               <div>
-                <button mat-raised-button>MUTE</button>
+                <button mat-raised-button (click)="cancel()">MUTE</button>
               </div>
               <div>
                 <button mat-raised-button (click)="openOrder(data)"  color="primary">OPEN</button>

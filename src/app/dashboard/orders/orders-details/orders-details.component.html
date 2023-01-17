@@ -1,6 +1,6 @@
 <div class="px-5 py-3 w-full" *ngIf="order else Loading" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
 
-  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" class="p-5 bg-white">
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" fxFlex="70">
       <button mat-icon-button (click)="back()">
         <mat-icon class="mat-18 material-icons-outlined">keyboard_backspace</mat-icon>
@@ -8,11 +8,11 @@
       <h3 class="m-0 p-0 text-green-600">{{order.user.name}} - #{{order.reference | uppercase}}</h3>
     </div>
 
-    <div class="p-3 bg-green-600 rounded-full text-white" fxLayout="column" fxLayoutAlign="center center"
+    <!-- <div class="p-3 bg-green-600 rounded-full text-white" fxLayout="column" fxLayoutAlign="center center"
       style="width: 70px; height: 70px">
       <h2 class="m-0 text-center p-0 ">29</h2>
       <p class="m-0 text-center  p-0">min</p>
-    </div>
+    </div> -->
   </div>
 
 

@@ -1,13 +1,16 @@
-<mat-toolbar  class="mat-elevation-z8">
+<mat-toolbar  class="mat-elevation-z8" color="primary">
     <mat-toolbar-row fxLayout="row" fxLayout="row" fxLayoutAlign="space-between center">
         <div fxLayout="row" fxLayout="row"  class=" w-full"  fxLayoutAlign="space-between center">
             <div class="logo-container w-full" fxLayout="row" fxLayoutAlign="space-between center" >
                 <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button> 
                 
             </div>
-            <mat-chip-listbox class="p-0 m-0" aria-label="Fish selection">
+            <!-- <mat-chip-listbox class="p-0 m-0" aria-label="Fish selection">
                 <mat-chip-option color="accent" selected>Online</mat-chip-option>
-              </mat-chip-listbox>
+            </mat-chip-listbox> -->
+            
+            <mat-slide-toggle [checked]="store.active" (change)="changeStoreStatus($event)" ></mat-slide-toggle>
+
             
         </div>
     </mat-toolbar-row>
@@ -15,10 +18,10 @@
 <mat-sidenav-container class="example-container" autosize>
    
     <mat-sidenav #sidenav class="example-sidenav" [mode]="this.currentScreenSize === 'XSmall' ? 'over' : 'side'" opened="true" >
-        <div class="w-full h-40 contrast-200 bg-black" fxLayout="column" fxLayoutAlign="center center" [style.background-image]="'url(' + store.bannerImage + ')'">
-            <div fxLayout="column" fxLayoutAlign="center center" >
+        <div class="banner bg-cover bg-center bg-no-repeat rounded-md" [style.background-image]="'url(' + (this.store.bannerImage == '' ? 'https://dashboard.heypay.xyz/images/store_image_placeholder.png' : this.store.bannerImage) + ')'">
+            <div class="control-banner w-full h-40" fxLayout="column" fxLayoutAlign="center center">
                 <img [src]="store.logo" class="rounded-full border-4 shadow-xl drop-shadow-lg dark:shadow-gray-800 border-white w-20 h-20">
-                <p class="text-white mt-1 font-bold shadow-indigo-500/40">{{store.name}}</p>
+                <p class="text-white mt-2 bg-black rounded-lg  p-2 font-bold shadow-indigo-500/40">{{store.name}}</p>
             </div>
         </div>
         <mat-nav-list>
@@ -44,7 +47,7 @@
                 <span class="full-width">Settings</span>
                 <mat-icon class="material-icons-outlined" matListItemIcon>settings</mat-icon>
             </mat-list-item>
-            <mat-list-item  class="parent" [routerLink]="['/dashboard/stores/list']" (click)="closeWhenClick()">
+            <mat-list-item  class="parent"  (click)="logOut()">
                 <span class="full-width">Logout</span>
                 <mat-icon class="material-icons-outlined" matListItemIcon>power_settings_new</mat-icon>
             </mat-list-item>

@@ -2,33 +2,37 @@
 
   <mat-tab-group [selectedIndex]="selectedTab" (selectedTabChange)="tabChanged($event)">
     <mat-tab>
-      <ng-template matTabLabel>
+      <ng-template mat-tab-label>
         <div fxLayout="column" fxLayoutAlign="space-around center">
-          <mat-icon matBadge="8" matBadgePosition="before" matBadgeColor="accent"
-            class="material-icons-outlined">pending_actions</mat-icon>
-          <span>New</span>
+          <mat-icon class="material-icons-outlined">pending</mat-icon>
+          <span>Pending</span>
         </div>
       </ng-template>
-      <div  fxLayout.gt-sm="row" fxLayout.sm="column" fxLayoutAlign.gt-sm="start start" fxLayoutAlign.sm="start stretch" 
-        *ngIf="orders[0].length > 0 || orders[1].length > 0; else noData" class="h-screen">
-        <div ngClass.gt-sm="border-r-2 h-screen" ngClass.lt-md="border-b-2" fxFlex.gt-sm="50">
-          <div>
-            <h3 class="m-2">New Order ({{orders[0].length}})</h3>
-            <ng-container *ngIf="orders[0].length > 0; else noNewOrder">
-              <app-order-card *ngFor="let order of orders[0]" [order]="order" [store]="store"></app-order-card>
-            </ng-container>
-          </div>
+
+      <ng-container *ngIf="orders[0].length > 0; else noData">
+        <div fxLayout="column" fxLayoutAlign="start stretch" ngClass.gt-sm="py-3 px-5" fxLayoutGap="10px">
+          <app-order-card fxFlex.gt-sm="30" *ngFor="let order of orders[0]" [order]="order"
+            [store]="store"></app-order-card>
         </div>
-        <div  fxFlex.gt-sm="50">
-          <div>
-            <h3 class="m-2">Accepted / Processing ({{orders[1].length}})</h3>
-            <ng-container *ngIf="orders[1].length > 0; else acceptedOrder">
-              <app-order-card *ngFor="let order of orders[1]" [order]="order" [store]="store"></app-order-card>
-            </ng-container>
-          </div>
+      </ng-container>
+
+    </mat-tab>
+
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+          <mat-icon class="material-icons-outlined">auto_mode</mat-icon>
+          <span>Progress</span>
         </div>
-      </div>
+      </ng-template>
       
+      <ng-container *ngIf="orders[1].length > 0; else noData">
+        <div fxLayout="column" fxLayoutAlign="start stretch" ngClass.gt-sm="py-3 px-5" fxLayoutGap="10px">
+          <app-order-card fxFlex.gt-sm="30" *ngFor="let order of orders[1]" [order]="order"
+            [store]="store"></app-order-card>
+        </div>
+      </ng-container>
     </mat-tab>
 
 
@@ -40,10 +44,11 @@
           <span>Completed</span>
         </div>
       </ng-template>
-      <h3 class="m-5">Delivered Order ({{orders[2].length}})</h3>
-      <ng-container *ngIf="orders[2].length > 0; else acceptedOrder">
-        <div fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" ngClass.gt-sm="py-3 px-5" fxLayoutGap.gt-sm="10">
-          <app-order-card fxFlex.gt-sm="30" *ngFor="let order of orders[2]" [order]="order" [store]="store"></app-order-card>
+     
+      <ng-container *ngIf="orders[2].length > 0; else noData">
+        <div fxLayout="column" fxLayoutAlign="start stretch" ngClass.gt-sm="py-3 px-5" fxLayoutGap="10px">
+          <app-order-card fxFlex.gt-sm="30" *ngFor="let order of orders[2]" [order]="order"
+            [store]="store"></app-order-card>
         </div>
       </ng-container>
     </mat-tab>
@@ -55,10 +60,11 @@
           <span>Canceled</span>
         </div>
       </ng-template>
-      <h3 class="m-5">Canceled Order ({{orders[3].length}})</h3>
-      <ng-container *ngIf="orders[3].length > 0; else acceptedOrder">
-        <div fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" ngClass.gt-sm="py-3 px-5" fxLayoutGap.gt-sm="10">
-          <app-order-card fxFlex.gt-sm="30" *ngFor="let order of orders[3]" [order]="order" [store]="store"></app-order-card>
+     
+      <ng-container *ngIf="orders[3].length > 0; else noData">
+        <div fxLayout="column" fxLayoutAlign="start stretch" ngClass.gt-sm="py-3 px-5" fxLayoutGap="10px">
+          <app-order-card fxFlex.gt-sm="30" *ngFor="let order of orders[3]" [order]="order"
+            [store]="store"></app-order-card>
         </div>
       </ng-container>
 
@@ -82,16 +88,3 @@
   </div>
 </ng-template>
 
-<ng-template #noNewOrder>
-  <div fxLayoutAlign="center center" fxLayout="column" class="w-full ">
-    <app-no-items icon="pending" title="No new order"
-      description="You have no pending order"></app-no-items>
-  </div>
-</ng-template>
-
-<ng-template #acceptedOrder>
-  <div fxLayoutAlign="center center" fxLayout="column" class="w-full ">
-    <app-no-items icon="pending" title="No Accepted Order"
-      description="You have no accepted or current working order"></app-no-items>
-  </div>
-</ng-template>

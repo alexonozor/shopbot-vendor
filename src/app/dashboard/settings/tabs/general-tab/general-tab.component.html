@@ -1,8 +1,8 @@
-<div style="padding:5px; position: relative; height: 100vh; background-color: #fff;">
+<div style="padding:5px; position: relative; height: 100vh; background-color: #fff; padding-bottom: 20px;">
     
     <form [formGroup]="generalSettingForm">
         <div class="mat-elevation-z2 example-containe p-3">
-            <div fxLayout.gt.md="row" fxLayout.md="column" fxLayoutGap.lt-lg="10px" fxLayout.lt-md="column" fxLayoutAlign="space-around center" style="overflow: hidden;">
+            <div  fxLayout="column" fxLayoutGap="10px"  fxLayoutAlign="space-around center" style="overflow: hidden;">
                 <div class="logo" [style.background-image]="'url(' + (this.store.logo == '' ? 'https://dashboard.heypay.xyz/images/store_image_placeholder.png' : this.store.logo) + ')'" fxLayout="row" fxLayoutAlign="center center">
                     <div class="control-logo" >
                         <input type="file" class="file-input" (change)="onFileLogoSelected($event)"  #logoUpload>
@@ -17,7 +17,7 @@
                     </div>
                 </div>
 
-                <div class="banner rounded-md" [style.background-image]="'url(' + (this.store.bannerImage == '' ? 'https://dashboard.heypay.xyz/images/store_image_placeholder.png' : this.store.bannerImage) + ')'" fxLayout="row" fxLayoutAlign="center center">
+                <div class="banner bg-cover bg-center bg-no-repeat rounded-md" [style.background-image]="'url(' + (this.store.bannerImage == '' ? 'https://dashboard.heypay.xyz/images/store_image_placeholder.png' : this.store.bannerImage) + ')'" fxLayout="row" fxLayoutAlign="center center">
                     <div class="control-banner">
                         <input type="file" class="file-input" (change)="onFileBannerSelected($event)"  #bannerUpload>
                         <mat-progress-spinner *ngIf="uploadProgressBanner" mode="indeterminate" color="primary" [strokeWidth]="10"></mat-progress-spinner>
@@ -32,8 +32,8 @@
             </div>
         </div>
 
-        <div fxLayout.gt-md="row" fxLayoutAlign.gt-md="start start"  fxLayoutGap.gt-md="10px"  fxLayout.lt-lg="column" fxLayoutAlign.lt-md="space-around center">
-            <div class="mat-elevation-z2 example-container" fxFlex="30%" fxFlexAlign.gt-md="start">
+        <div   fxLayoutGap.gt-md="10px"  fxLayout="column" fxLayoutAlign="space-around center">
+            <div class="mat-elevation-z2 example-container" fxFlex="30%">
                 <h3>Basic Information</h3>
                 <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Store Name</mat-label>
@@ -51,7 +51,7 @@
                     
                 </mat-form-field>
             </div>
-            <div class="mat-elevation-z2 example-container" fxFlex="30%" fxFlexAlign.gt-md="start" formGroupName="contactInfo">
+            <div class="mat-elevation-z2 example-container" fxFlex="30%" formGroupName="contactInfo">
                 <h3>Contact Information</h3>
                 <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Store Email Address</mat-label>

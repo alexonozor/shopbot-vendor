@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "publish": "ng build  --base-href 'https://dashboard.shopbot.africa' && npx ngh --dir=dist/shopbot-restaurant"
+    "publish": "ng build  &&  ngh --dir=dist/shopbot-restaurant"
   },
   "private": true,
   "dependencies": {

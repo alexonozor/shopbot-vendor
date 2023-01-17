@@ -1,16 +1,14 @@
-<div style="height: 100vh; position: relative;" *ngIf="(menus$ | async) as menus; else Loading">
-    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+<div style="height: 100vh; position: relative;"  *ngIf="(menus$ | async) as menus; else Loading">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" class="mat-elevation-z8 p-5 bg-white">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" fxFlex="70">
           <button mat-icon-button (click)="goBack()">
             <mat-icon class="mat-18 material-icons-outlined">keyboard_backspace</mat-icon>
           </button>
-          <h3 class="m-0 p-0 text-green-600">Menu</h3>
+          <h2 class="m-0 p-0">Menu</h2>
         </div>
-    
-        
-      </div>
+      </div> 
     <ul class="divide-gray-500 w-full" *ngIf="menus.length > 0; else noData">
-        <li class="bg-white p-5 w-full" *ngFor="let menu of menus; let i = index" matRipple [routerLink]="['../', menu._id, 'details']">
+        <li class="bg-white p-5 w-full mat-elevation-z3" *ngFor="let menu of menus; let i = index" matRipple [routerLink]="['../', menu._id, 'details']">
           <div class="flex items-center space-x-4">
             
             <div class="flex-1 min-w-0">

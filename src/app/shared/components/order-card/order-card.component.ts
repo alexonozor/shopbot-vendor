@@ -40,7 +40,8 @@ export class OrderCardComponent implements OnInit {
 
   markAsReady(event:any, order: Order) {
     event.stopPropagation();
-    this.updateStatus({ id: 2, name: "Ready for Pickup", color: "text-blue-500"}, order, false)
+    order.status.unshift({ id: 2, name: "Ready for Pickup", color: "text-blue-500", updatedOn: Date.now() })
+    this.updateStatus({ id: 2, name: "Ready for Pickup", color: "text-blue-500", updatedOn: Date.now()}, order, false)
   }
 
   updateStatus(event:any, order:any, eventType = true) {
